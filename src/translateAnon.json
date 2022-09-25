@@ -1,0 +1,11 @@
+{
+    "en": {
+        "navBar": ["Home", "Courses", "Contact us", "Eng", "Search", "Filter courses", "Log in", "Sign up"]
+    },
+    "ar": {
+        "navBar": ["الرئيسية", "الدروس", "اتصل بنا", "العربية", "ابحث", "عنوان الدرس", "تسجيل الدخول", "انشئ حساب"]
+    },
+    "fr": {
+        "navBar": ["Accueil", "Cours", "Contactez nous", "Français", "Rechercher", "Filtrer les cours", "Se connecter", "Crée un compte"]
+    }
+}
