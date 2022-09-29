@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <section className='hero is-fullheight-with-navbar'>
             <div className='container is-fullhd'>
-                <div className='columns has-background-grey-light has-text-justified'>
+                <div className='columns has-background-grey-light has-text-justified is-hidden'>
                     <FontAwesomeIcon icon="fad fa-badge-check" />
                     <div className='column is-centered'>
                         <h4>Follow your progress and earn badges</h4>
@@ -23,17 +23,17 @@ const Header = () => {
                     </div>
                     <div className='column'>
                         <i>Mathematics</i>
-                        <progress class="progress is-danger" value="100" max="100">15%</progress>
+                        <progress className="progress is-danger" value="100" max="100">15%</progress>
 
                         <i>Computer science</i>
-                        <progress class="progress is-info" value="15" max="100">15%</progress>
+                        <progress className="progress is-info" value="15" max="100">15%</progress>
 
                         <i>chemistry</i>
-                        <progress class="progress is-primary" value="50" max="100">15%</progress>
+                        <progress className="progress is-primary" value="50" max="100">15%</progress>
                     </div>
                 </div>
             </div>
-            <div className='container hero-body is-hidden'>
+            <div className='container'>
                 <div className='columns is-flex is-vcentered is-centered'>
                     <div className='column is-5'>
                         <h4>your future starts here </h4>

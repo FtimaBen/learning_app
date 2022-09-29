@@ -5,10 +5,12 @@ import SearchBar from './SearchBar'
 import { useState } from 'react'
 
 import translation from './translateAnon.json' 
+import LoginForm from './LoginForm'
 
 const NavBar = () => {
     const [isActive, changeState] = useState('')
     const logoSrc = ''
+    const [isLoginFormVisible, setVisibility] = useState(true);
 
     const [items, changeItems] = useState([
         {name: 'home', link: '#', icon: 'home', classList: []},
@@ -16,11 +18,6 @@ const NavBar = () => {
         {name: 'contact us', link: '#', icon: '', classList: []},
         {name: 'English', link: 'void(1)', icon: '', classList: ['has-dropdown', 'is-hoverable'], dropItems: ['العربية', 'Français']}
     ])
-
-    const buttons = [
-        {name: 'log in', link: '#', classList: ''},
-        {name: 'sign up', link: '#', classList: ''}
-    ]
 
     function currentLangItemChange(e) {
         const perm_items = [...items]
@@ -47,7 +44,7 @@ const NavBar = () => {
                                 <FontAwesomeIcon icon={ faGraduationCap } size='4x' />
                             }
                         </a> 
-                        
+                    
                     }
                 </div>
                 <div role="button" className={ "navbar-burger " + isActive} aria-label="menu" aria-expanded="false" 
@@ -79,13 +76,10 @@ const NavBar = () => {
                         </div>
                     ))
                     }
-                    {   
-                        buttons.map((button) => (
-                            <div className={'navbar-item' + ((isActive === 'is-active')? '': ' is-hidden')} key={button.name}>
-                                <a className='navbar-item' href={button.link} key={button.name + button.link}> {button.name} </a>
-                            </div>
-                        ))
-                    }
+                    <div className={'navbar-item' + ((isActive === 'is-active')? '': ' is-hidden')}>
+                        <a className='navbar-item' href='#'> Log in </a>
+                        <a className='navbar-item' href='#'> Sign up </a>
+                    </div>
                 </div>
                 <div className='navbar-end'>
                     
@@ -97,19 +91,15 @@ const NavBar = () => {
                     </div>,
                     <div className='navbar-item'>
                         <div className='buttons'>
-                        {
-                            buttons.map((button) => (
-                                <div className={'button' + button.classList}>
-                                    <a href={button.link} key={button.name}>{button.name}</a>
-                                </div>
-                            ))
-                        }
+                            <button className='button' onClick={()=>setVisibility(true)}>Log in</button>
+                            <button className='button is-danger'>Sign up</button>
                         </div>
                     </div>
                     ]
                     }
                 </div>
             </div>
+            <LoginForm visibility={{isLoginFormVisible: isLoginFormVisible, setVisibility: setVisibility}} />
         </nav> 
 
     )
