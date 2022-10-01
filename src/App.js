@@ -3,6 +3,7 @@ import NavBar from './Navbar';
 import Header from './Header';
 import Breadcrumbs from './BreadCrumbs';
 import TeachersList from './TeachersList';
+import Footer from './Footer';
 
 function App() {
   const teachers = [
@@ -26,6 +27,7 @@ function App() {
       <Breadcrumbs />
       <Header />
       <TeachersList teachers={ teachers }/>
+      <Footer />
     </div>
   )
 }
