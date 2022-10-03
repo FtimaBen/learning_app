@@ -6,11 +6,13 @@ import { useState } from 'react'
 
 import translation from './translateAnon.json' 
 import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 
 const NavBar = () => {
     const [isActive, changeState] = useState('')
     const logoSrc = ''
-    const [isLoginFormVisible, setVisibility] = useState(true);
+    const [isLoginFormVisible, setLoginFormVisibility] = useState(true);
+    const [isSignUpFormVisible, setSignUpFormVisibility] = useState(false);
 
     const [items, changeItems] = useState([
         {name: 'home', link: '#', icon: 'home', classList: []},
@@ -61,7 +63,8 @@ const NavBar = () => {
                     { 
                     items.map((item) => (
                         <div className={'navbar-item hoverable ' + item.classList.join(' ')} key={item.name}>
-                            <a className={item.classList.includes('has-dropdown')?'navbar-link': 'navbar-item' } href={item.link} key={item.name + item.link}> {item.name} </a>
+                            <a className={item.classList.includes('has-dropdown')?'navbar-link': 'navbar-item' } 
+                                href={item.link} key={item.name + item.link}> {item.name} </a>
                             {
                                 item.classList.includes('has-dropdown')?
                                 <div className="navbar-dropdown is-boxed">
@@ -91,15 +94,16 @@ const NavBar = () => {
                     </div>,
                     <div className='navbar-item'>
                         <div className='buttons'>
-                            <button className='button' onClick={()=>setVisibility(true)}>Log in</button>
-                            <button className='button is-danger'>Sign up</button>
+                            <button className='button' onClick={()=>setLoginFormVisibility(true)}>Log in</button>
+                            <button className='button is-danger' onClick={()=>setSignUpFormVisibility(true)}>Sign up</button>
                         </div>
                     </div>
                     ]
                     }
                 </div>
             </div>
-            <LoginForm visibility={{isLoginFormVisible: isLoginFormVisible, setVisibility: setVisibility}} />
+            <LoginForm visibility={{isLoginFormVisible: isLoginFormVisible, setVisibility: setLoginFormVisibility}} />
+            <SignUpForm visibility={{isSignUpFormVisible: isSignUpFormVisible, setVisibility: setSignUpFormVisibility}} />
         </nav> 
 
     )

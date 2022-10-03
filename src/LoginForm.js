@@ -11,6 +11,13 @@ const LoginForm = (props) => {
 
     const loginButton = useRef()
 
+    const [passwordVisibility, setPasswordVisibility] = useState('Show')
+
+    function chnagePasswordVisibility() {
+        if(passwordVisibility == 'Hide') setPasswordVisibility('Show')
+        else setPasswordVisibility('Hide')
+    }
+
     function loginButtonState() {
         if(emailFormatIsValid == true && passwordFormatIsValid == true) loginButton.current.disabled = 'false'
         else loginButton.current.disabled = 'true'
@@ -51,11 +58,16 @@ const LoginForm = (props) => {
                                 Please enter a valid email
                             </p>
                         </div>
-                        <div className="field">
-                            <label className="label">Password</label>
+
+                        {/* password label is outside the field div because the div has addons */}
+                        <label className="label">Password</label>
+                        <div className="field has-addons">
                             <div className="control has-icons-right">
                                 <input className={(passwordFormatIsValid == false && passwordFormatIsValid != undefined)?"input is-danger":"input"} 
-                                    type="password" name='password' onChange={(event)=>setPasswordFormatValid(isPasswordFormatValid(event))}/>
+                                    type={(passwordVisibility == 'Show')?'password':'text'}
+                                    name='password' 
+                                    onChange={(event)=>setPasswordFormatValid(isPasswordFormatValid(event))}/>
+
                                 <span className={(passwordFormatIsValid == true || passwordFormatIsValid == undefined)?"icon is-small is-right is-hidden":"icon is-small is-right"}>
                                     <i className="fas fa-exclamation-triangle"></i>
                                 </span>
@@ -69,6 +81,9 @@ const LoginForm = (props) => {
                                     The password must be at least 8 charachters long and contain at least one digit (0-9) and at least one capitalized charachter 
                                     <span className="is-capitalized">(A-Z)</span> .
                                 </p>
+                            </div>
+                            <div className="control">
+                                <button className="button is-info has-addons-left" type="button" onClick={chnagePasswordVisibility}>{passwordVisibility}</button>
                             </div>
                         </div>
                         <div className="field">
