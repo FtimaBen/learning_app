@@ -1,17 +1,17 @@
 import { useRef, useState } from "react";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { VerifyFormat } from "./VerifyFormat.js"
 
 const LoginForm = (props) => {
     const [emailFormatIsValid, setEmailFormatValid] = useState()
     const [passwordFormatIsValid, setPasswordFormatValid] = useState()
     
-    const emailReg = /\S+@\S+\.\S+/
-    const passwordReg = /^[a-zA-Z0-9]{8,}/ 
-
     const loginButton = useRef()
 
     const [passwordVisibility, setPasswordVisibility] = useState('Show')
+
+    const verifyFormat = new VerifyFormat();
 
     function chnagePasswordVisibility() {
         if(passwordVisibility == 'Hide') setPasswordVisibility('Show')
@@ -21,14 +21,6 @@ const LoginForm = (props) => {
     function loginButtonState() {
         if(emailFormatIsValid == true && passwordFormatIsValid == true) loginButton.current.disabled = 'false'
         else loginButton.current.disabled = 'true'
-    }
-
-    function isEmailFormatValid(event) {
-        return emailReg.test(event.target.value)
-    }
-
-    function isPasswordFormatValid(event) {
-        return passwordReg.test(event.target.value)
     }
     
     return (
@@ -46,7 +38,7 @@ const LoginForm = (props) => {
                             <label className="label">Email</label>
                             <div className="control has-icons-right">
                                 <input className={(emailFormatIsValid == false && emailFormatIsValid != undefined)?"input is-danger":"input"}  
-                                        type="email" name='email' onChange={(event)=>setEmailFormatValid(isEmailFormatValid(event))}/> 
+                                        type="email" name='email' onChange={(event)=>setEmailFormatValid(verifyFormat.isEmailFormatValid(event))}/> 
                                 <span className={(emailFormatIsValid == false && emailFormatIsValid != undefined)?"icon is-small is-right":"is-hidden"}>
                                     <i className="fas fa-exclamation-triangle"></i>
                                 </span>
@@ -66,7 +58,7 @@ const LoginForm = (props) => {
                                 <input className={(passwordFormatIsValid == false && passwordFormatIsValid != undefined)?"input is-danger":"input"} 
                                     type={(passwordVisibility == 'Show')?'password':'text'}
                                     name='password' 
-                                    onChange={(event)=>setPasswordFormatValid(isPasswordFormatValid(event))}/>
+                                    onChange={(event)=>setPasswordFormatValid(verifyFormat.isPasswordFormatValid(event))}/>
 
                                 <span className={(passwordFormatIsValid == true || passwordFormatIsValid == undefined)?"icon is-small is-right is-hidden":"icon is-small is-right"}>
                                     <i className="fas fa-exclamation-triangle"></i>
