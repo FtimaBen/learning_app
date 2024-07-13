@@ -15,7 +15,7 @@ function App() {
     {
       fullName: 'ahmad bel',
       description: 'Masters degree in systeme engineering',
-      courses: 4,
+      courses: 4
     }
   ]
 
